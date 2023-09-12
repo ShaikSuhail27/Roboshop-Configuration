@@ -9,4 +9,4 @@
     state: installed
 
 - name: loading the mongo schema
-  ansible.builtin.shell: "mongo --host MONGODB-SERVER-IPADDRESS </app/schema/{{component}}.js"
+  ansible.builtin.shell: "mongo --host mongodb.suhaildevops.online </app/schema/{{component}}.js"

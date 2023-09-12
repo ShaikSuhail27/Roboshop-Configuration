@@ -1,0 +1,26 @@
+- name: Setup the node environment and install nodejs
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: setup the application
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: install the dependencies
+  ansible.builtin.command: npm install
+  args:
+    chdir: /app
+
+- name: installing the mongodb client and loading the schema
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongo-schema
+
+- name: copying the service file and starting the service
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd-setup
+
+
